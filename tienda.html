@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
   <title>Tienda - Abyss Inc</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
@@ -16,24 +16,23 @@
     *{box-sizing:border-box}
     body {
       margin:0;
-      background: url("ABYSS INC (8).png") center/cover fixed no-repeat;
+      background:url("ABYSS INC (8).png") center/cover fixed no-repeat;
       overflow-x:hidden;
       font-family:"Comic Neue", cursive;
       color:#fff;
     }
-
     canvas#particles {
       position:fixed; inset:0; z-index:0; pointer-events:none;
     }
 
     /* ===== NAVBAR ===== */
     .navbar {
-      position:fixed; top:20px; width:100%;
-      display:flex; justify-content:center; gap:14px;
-      z-index:10; flex-wrap:wrap;
+      position:fixed; top:10px; width:100%;
+      display:flex; justify-content:center; flex-wrap:wrap; gap:10px;
+      z-index:10; padding:0 10px;
     }
     .navbar a {
-      text-decoration:none; color:#fff; font-size:.95rem;
+      text-decoration:none; color:#fff; font-size:.9rem;
       padding:6px 14px; border:2px solid var(--pink); border-radius:24px;
       background:rgba(0,0,0,.3); text-shadow:0 0 6px var(--pink);
       box-shadow:0 0 8px var(--pink); transition:.25s;
@@ -52,10 +51,9 @@
     /* ===== TIENDA ===== */
     .page {
       position:relative; z-index:1;
-      padding:110px 22px 60px;
+      padding:120px 16px 60px;
       max-width:1200px; margin:0 auto;
     }
-
     .filters {
       display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
       margin-bottom:22px;
@@ -74,7 +72,7 @@
 
     .grid {
       display:grid; gap:18px;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 
     .card {
@@ -102,14 +100,13 @@
 
     .thumb {
       position:relative; z-index:2; width:100%;
-      aspect-ratio:1/1;
-      object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,.15);
+      aspect-ratio:1/1; object-fit:cover;
+      border-radius:12px; border:1px solid rgba(255,255,255,.15);
       box-shadow:0 10px 30px rgba(0,0,0,.35);
     }
     .info {
       position:relative; z-index:2; padding:12px 6px 6px;
-      display:flex; justify-content:space-between; align-items:center; gap:10px;
-      flex-wrap:wrap;
+      display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
     }
     .title { font-size:1rem; line-height:1.3; flex:1; }
     .price { font-weight:800; color:#ffe0ff; text-shadow:0 0 8px var(--pink) }
@@ -133,9 +130,12 @@
     }
 
     @media (max-width:640px){
-      .page{ padding-top:100px }
-      .thumb { aspect-ratio: 1/1; }
-      .navbar a { font-size:0.85rem; }
+      .navbar {gap:6px;}
+      .navbar a {font-size:0.8rem; padding:5px 10px;}
+      .page {padding-top:100px;}
+      .grid {grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));}
+      .popup {width:85%; padding:25px 20px;}
+      .popup p {font-size:1rem;}
     }
 
     /* ===== POPUP ===== */
@@ -154,32 +154,19 @@
       opacity: 0;
       transition: all 0.4s ease;
       overflow: hidden;
+      width: 400px;
+      max-width: 90%;
     }
-    .popup.show {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
+    .popup.show {opacity: 1; transform: translate(-50%, -50%) scale(1);}
     .popup button {
       margin-top: 20px;
       background: linear-gradient(90deg, var(--pink), var(--pink-2));
-      border: none;
-      padding: 10px 25px;
-      border-radius: 20px;
-      font-weight: 700;
-      color: #000;
-      cursor: pointer;
-      transition: all 0.3s;
-      box-shadow: 0 0 15px var(--pink);
+      border: none; padding: 10px 25px; border-radius: 20px;
+      font-weight: 700; color: #000; cursor: pointer;
+      transition: all 0.3s; box-shadow: 0 0 15px var(--pink);
     }
-    .popup button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px var(--pink), 0 0 45px var(--pink-2);
-    }
-
-    .popup p {
-      font-size: 1.1rem;
-      text-shadow: 0 0 10px var(--pink);
-    }
+    .popup button:hover {transform: scale(1.1); box-shadow: 0 0 25px var(--pink), 0 0 45px var(--pink-2);}
+    .popup p {font-size: 1.1rem; text-shadow: 0 0 10px var(--pink);}
   </style>
 </head>
 
@@ -204,27 +191,74 @@
     </div>
 
     <section class="grid" id="grid">
-      <!-- Ejemplo de producto -->
       <article class="card" data-cat="gfx">
         <span class="tag">GFX Discord</span>
         <img class="thumb" src="prod-gfx-1.png" alt="GFX Banner para Discord">
         <div class="info">
-          <h3 class="title">Banner Discord para servidores</h3>
+          <h3 class="title">Banner Discord para servidores (GFX)</h3>
           <div class="price">$1 - $20 (Negociable)</div>
+        </div>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
+      </article>
+
+      <article class="card" data-cat="dibujos">
+        <span class="tag">Emotes</span>
+        <img class="thumb" src="prod-dibujo-1.png" alt="Dibujo estilo anime">
+        <div class="info">
+          <h3 class="title">Emotes para tus streams o videos</h3>
+          <div class="price">$1 - $20 (Negociable)</div>
+        </div>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
+      </article>
+
+      <article class="card" data-cat="disenos">
+        <span class="tag">Diseño</span>
+        <img class="thumb" src="prod-diseno-1.jpg" alt="Diseño de logo">
+        <div class="info">
+          <h3 class="title">Diseños profesionales para tus proyectos</h3>
+          <div class="price">$1 - $20 (Negociable)</div>
+        </div>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
+      </article>
+
+      <article class="card" data-cat="web">
+        <span class="tag">Páginas Web</span>
+        <img class="thumb" src="prod-web-1.jpg" alt="Página web landing">
+        <div class="info">
+          <h3 class="title">Páginas web personalizadas</h3>
+          <div class="price">$1 - $20 (Negociable)</div>
+        </div>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
+      </article>
+
+      <article class="card" data-cat="gfx">
+        <span class="tag">GFX</span>
+        <img class="thumb" src="prod-gfx-2.jpg" alt="Overlay stream">
+        <div class="info">
+          <h3 class="title">Logos y overlays para juegos</h3>
+          <div class="price">$1 - $20 (Negociable)</div>
+        </div>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
+      </article>
+
+      <article class="card" data-cat="dibujos">
+        <span class="tag">Dibujo</span>
+        <img class="thumb" src="prod-dibujo-2.jpg" alt="Chibi personalizado">
+        <div class="info">
+          <h3 class="title">Dibujos personalizados hechos por Insa</h3>
+          <div class="price">$1 - $20</div>
         </div>
         <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
       </article>
     </section>
   </main>
 
-  <!-- Popup -->
   <div id="popup" class="popup">
     <p>💬 Serás redirigido a nuestro Discord<br>para realizar tu pedido.</p>
     <button id="popup-btn">Aceptar</button>
   </div>
 
   <script>
-    // Partículas
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let w, h, particles = [];
@@ -248,7 +282,6 @@
     };
     makeParticles(); tick();
 
-    // Filtro
     const btns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.card');
     btns.forEach(b=>{
@@ -263,12 +296,10 @@
       });
     });
 
-    // Popup
     const popup = document.getElementById('popup');
     const popupBtn = document.getElementById('popup-btn');
     const buyButtons = document.querySelectorAll('.buy');
     let redirectLink = '';
-
     buyButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -283,4 +314,3 @@
   </script>
 </body>
 </html>
-
