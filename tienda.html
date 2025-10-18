@@ -26,10 +26,11 @@
       position:fixed; inset:0; z-index:0; pointer-events:none;
     }
 
+    /* ===== NAVBAR ===== */
     .navbar {
       position:fixed; top:20px; width:100%;
       display:flex; justify-content:center; gap:14px;
-      z-index:10;
+      z-index:10; flex-wrap:wrap;
     }
     .navbar a {
       text-decoration:none; color:#fff; font-size:.95rem;
@@ -48,6 +49,7 @@
       100%{ box-shadow:0 0 5px var(--pink)}
     }
 
+    /* ===== TIENDA ===== */
     .page {
       position:relative; z-index:1;
       padding:110px 22px 60px;
@@ -79,7 +81,6 @@
       position:relative; overflow:hidden; border-radius:18px;
       padding:12px; background:var(--bg-glass);
       backdrop-filter: blur(6px);
-      transform:translateZ(0);
       transition: transform .25s ease, box-shadow .25s ease;
       animation:fadeIn .5s ease both;
     }
@@ -100,15 +101,17 @@
     @keyframes fadeIn { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none} }
 
     .thumb {
-      position:relative; z-index:2; width:100%; aspect-ratio:4/3;
+      position:relative; z-index:2; width:100%;
+      aspect-ratio:1/1;
       object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,.15);
       box-shadow:0 10px 30px rgba(0,0,0,.35);
     }
     .info {
       position:relative; z-index:2; padding:12px 6px 6px;
       display:flex; justify-content:space-between; align-items:center; gap:10px;
+      flex-wrap:wrap;
     }
-    .title { font-size:1.05rem; line-height:1.2; }
+    .title { font-size:1rem; line-height:1.3; flex:1; }
     .price { font-weight:800; color:#ffe0ff; text-shadow:0 0 8px var(--pink) }
 
     .buy {
@@ -131,13 +134,14 @@
 
     @media (max-width:640px){
       .page{ padding-top:100px }
+      .thumb { aspect-ratio: 1/1; }
+      .navbar a { font-size:0.85rem; }
     }
 
-    /* ===== Popup base ===== */
+    /* ===== POPUP ===== */
     .popup {
       position: fixed;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       transform: translate(-50%, -50%) scale(0.7);
       background: rgba(0,0,0,0.85);
       border: 2px solid var(--pink);
@@ -145,7 +149,6 @@
       padding: 35px 45px;
       color: white;
       text-align: center;
-      font-family: "Comic Neue", cursive;
       box-shadow: 0 0 40px var(--pink);
       z-index: 999;
       opacity: 0;
@@ -156,7 +159,6 @@
       opacity: 1;
       transform: translate(-50%, -50%) scale(1);
     }
-
     .popup button {
       margin-top: 20px;
       background: linear-gradient(90deg, var(--pink), var(--pink-2));
@@ -174,55 +176,9 @@
       box-shadow: 0 0 25px var(--pink), 0 0 45px var(--pink-2);
     }
 
-    .popup-glow {
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: conic-gradient(
-        from 0deg,
-        transparent,
-        var(--pink),
-        transparent,
-        var(--pink-2),
-        transparent
-      );
-      animation: spinGlow 6s linear infinite;
-      opacity: 0.25;
-      z-index: 0;
-      filter: blur(20px);
-    }
-    @keyframes spinGlow {
-      to { transform: rotate(360deg); }
-    }
-
-    .popup::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(var(--pink) 1px, transparent 1px),
-        radial-gradient(var(--pink-2) 1px, transparent 1px);
-      background-size: 20px 20px;
-      opacity: 0.3;
-      animation: floatParticles 5s linear infinite;
-      z-index: 1;
-    }
-    @keyframes floatParticles {
-      from { background-position: 0 0, 0 0; }
-      to { background-position: 40px 60px, -40px -60px; }
-    }
-
     .popup p {
-      position: relative;
-      z-index: 2;
       font-size: 1.1rem;
       text-shadow: 0 0 10px var(--pink);
-    }
-    .popup button {
-      position: relative;
-      z-index: 2;
     }
   </style>
 </head>
@@ -248,84 +204,32 @@
     </div>
 
     <section class="grid" id="grid">
+      <!-- Ejemplo de producto -->
       <article class="card" data-cat="gfx">
         <span class="tag">GFX Discord</span>
         <img class="thumb" src="prod-gfx-1.png" alt="GFX Banner para Discord">
         <div class="info">
-          <h3 class="title">Banner Discord para servidores (GFX)</h3>
+          <h3 class="title">Banner Discord para servidores</h3>
           <div class="price">$1 - $20 (Negociable)</div>
-        </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
-      </article>
-
-      <article class="card" data-cat="dibujos">
-        <span class="tag">Emotes</span>
-        <img class="thumb" src="prod-dibujo-1.png" alt="Dibujo estilo anime">
-        <div class="info">
-          <h3 class="title">Emotes para tus streams o videos</h3>
-          <div class="price">$1 - $20 (Negociable)</div>
-        </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
-      </article>
-
-      <article class="card" data-cat="disenos">
-        <span class="tag">Diseño</span>
-        <img class="thumb" src="prod-diseno-1.jpg" alt="Diseño de logo">
-        <div class="info">
-          <h3 class="title">Diseños profesionales para tus proyectos</h3>
-          <div class="price">$1 - $20 (Negociable)</div>
-        </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
-      </article>
-
-      <article class="card" data-cat="web">
-        <span class="tag">Páginas Web</span>
-        <img class="thumb" src="prod-web-1.jpg" alt="Página web landing">
-        <div class="info">
-          <h3 class="title">Páginas web personalizadas</h3>
-          <div class="price">$1 - $20 (Negociable)</div>
-        </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
-      </article>
-
-      <article class="card" data-cat="gfx">
-        <span class="tag">GFX</span>
-        <img class="thumb" src="prod-gfx-2.jpg" alt="Overlay stream">
-        <div class="info">
-          <h3 class="title">Logos y overlays para juegos</h3>
-          <div class="price">$1 - $20 (Negociable)</div>
-        </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
-      </article>
-
-      <article class="card" data-cat="dibujos">
-        <span class="tag">Dibujo</span>
-        <img class="thumb" src="prod-dibujo-2.jpg" alt="Chibi personalizado">
-        <div class="info">
-          <h3 class="title">Dibujos personalizados hechos por Insa</h3>
-          <div class="price">$1 - $20</div>
         </div>
         <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
       </article>
     </section>
   </main>
 
-  <!-- Popup Anime Mejorado -->
+  <!-- Popup -->
   <div id="popup" class="popup">
-    <div class="popup-glow"></div>
     <p>💬 Serás redirigido a nuestro Discord<br>para realizar tu pedido.</p>
     <button id="popup-btn">Aceptar</button>
   </div>
 
   <script>
-    /* Partículas anime */
+    // Partículas
     const canvas = document.getElementById('particles');
     const ctx = canvas.getContext('2d');
     let w, h, particles = [];
-
     const resize = () => { w = canvas.width = innerWidth; h = canvas.height = innerHeight; }
     addEventListener('resize', resize); resize();
-
     const makeParticles = () => {
       particles = Array.from({length: 70}, () => ({
         x: Math.random()*w, y: Math.random()*h,
@@ -344,7 +248,7 @@
     };
     makeParticles(); tick();
 
-    /* Filtro por categoría */
+    // Filtro
     const btns = document.querySelectorAll('.filter-btn');
     const cards = document.querySelectorAll('.card');
     btns.forEach(b=>{
@@ -359,7 +263,7 @@
       });
     });
 
-    /* Popup control */
+    // Popup
     const popup = document.getElementById('popup');
     const popupBtn = document.getElementById('popup-btn');
     const buyButtons = document.querySelectorAll('.buy');
@@ -372,186 +276,11 @@
         popup.classList.add('show');
       });
     });
-
     popupBtn.addEventListener('click', () => {
       popup.classList.remove('show');
       setTimeout(() => window.open(redirectLink, '_blank'), 300);
     });
   </script>
-
-<!-- ====== Asistente Abyss AI ====== -->
-<div id="abyss-ai">
-  <div id="ai-button">💬</div>
-  <div id="ai-window">
-    <div class="ai-header">
-      🤖 Abyss AI
-      <button id="ai-close">×</button>
-    </div>
-    <div id="ai-chat">
-      <div class="msg bot">¡Hola! Soy <b>Abyss AI</b> 🌌<br>¿En qué puedo ayudarte hoy?</div>
-    </div>
-    <div class="ai-input">
-      <input id="ai-text" type="text" placeholder="Escribe tu mensaje..."/>
-      <button id="ai-send">➤</button>
-    </div>
-  </div>
-</div>
-
-<style>
-#ai-button {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ff00ff, #ff66cc);
-  box-shadow: 0 0 30px #ff33cc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.8rem;
-  color: white;
-  cursor: pointer;
-  z-index: 9999;
-  transition: transform .3s;
-  animation: floaty 3s ease-in-out infinite;
-}
-#ai-button:hover { transform: scale(1.1); }
-
-#ai-window {
-  position: fixed;
-  bottom: 100px;
-  right: 25px;
-  width: 320px;
-  height: 420px;
-  background: rgba(0,0,0,0.85);
-  border: 2px solid #ff66cc;
-  border-radius: 16px;
-  box-shadow: 0 0 30px #ff66cc;
-  overflow: hidden;
-  display: none;
-  flex-direction: column;
-  backdrop-filter: blur(6px);
-  z-index: 10000;
-}
-#ai-window.show { display: flex; animation: fadeIn .3s ease; }
-
-.ai-header {
-  background: linear-gradient(90deg, #ff00ff, #ff66cc);
-  padding: 10px 15px;
-  color: #000;
-  font-weight: 800;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-#ai-close {
-  background: none;
-  border: none;
-  color: #000;
-  font-size: 1.4rem;
-  cursor: pointer;
-}
-#ai-chat {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.msg {
-  padding: 8px 12px;
-  border-radius: 12px;
-  max-width: 80%;
-  line-height: 1.3;
-}
-.msg.bot {
-  background: rgba(255,255,255,0.1);
-  align-self: flex-start;
-  border: 1px solid #ff99ff;
-  box-shadow: 0 0 10px #ff99ff;
-}
-.msg.user {
-  background: linear-gradient(90deg, #ff00ff, #ff66cc);
-  color: #000;
-  align-self: flex-end;
-  font-weight: 700;
-  box-shadow: 0 0 10px #ff66cc;
-}
-.ai-input {
-  display: flex;
-  border-top: 1px solid rgba(255,255,255,0.2);
-}
-.ai-input input {
-  flex: 1;
-  padding: 10px;
-  background: rgba(255,255,255,0.1);
-  border: none;
-  color: #fff;
-  outline: none;
-  font-family: "Comic Neue", cursive;
-}
-.ai-input button {
-  background: linear-gradient(90deg, #ff00ff, #ff66cc);
-  border: none;
-  cursor: pointer;
-  padding: 10px 16px;
-  color: #000;
-  font-weight: 800;
-  border-left: 1px solid rgba(255,255,255,0.2);
-}
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: none; }
-}
-@keyframes floaty {
-  0%,100%{ transform:translateY(0); }
-  50%{ transform:translateY(-5px); }
-}
-</style>
-
-<script>
-const aiBtn = document.getElementById('ai-button');
-const aiWin = document.getElementById('ai-window');
-const aiClose = document.getElementById('ai-close');
-const aiSend = document.getElementById('ai-send');
-const aiText = document.getElementById('ai-text');
-const aiChat = document.getElementById('ai-chat');
-
-aiBtn.addEventListener('click', () => aiWin.classList.toggle('show'));
-aiClose.addEventListener('click', () => aiWin.classList.remove('show'));
-
-function addMsg(text, type){
-  const msg = document.createElement('div');
-  msg.className = 'msg ' + type;
-  msg.innerHTML = text;
-  aiChat.appendChild(msg);
-  aiChat.scrollTop = aiChat.scrollHeight;
-}
-
-aiSend.addEventListener('click', sendMessage);
-aiText.addEventListener('keypress', e => { if(e.key === 'Enter') sendMessage(); });
-
-function sendMessage(){
-  const text = aiText.value.trim();
-  if(!text) return;
-  addMsg(text, 'user');
-  aiText.value = '';
-  setTimeout(()=> simulateAI(text), 700);
-}
-
-function simulateAI(userMsg){
-  let response = "Hmm... no estoy seguro, pero puedo ayudarte en Discord 💬";
-  if(userMsg.toLowerCase().includes("pedido")) response = "Puedes hacer tu pedido en el canal de encargos de nuestro Discord ✨";
-  else if(userMsg.toLowerCase().includes("logo")) response = "Creamos logos personalizados con TU PROPIO ESTILO.";
-  else if(userMsg.toLowerCase().includes("precio")) response = "Los precios varían según el diseño, ¡pregunta libremente en el Discord! 💎";
-  else if(userMsg.toLowerCase().includes("hola")) response = "¡Hola! Soy Abyss AI 🌌, tu asistente virtual.";
-  else if(userMsg.toLowerCase().includes("discord")) response = "¡Hola! Soy Abyss AI 🌌, y este es mi discord https://discord.gg/waprB3u36Y";
-  addMsg(response, 'bot');
-}
-</script>
-
 </body>
 </html>
+
