@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insa - Abyss Inc</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: url("contacto.png") no-repeat center center fixed;
+      background-size: cover;
+      font-family: "Comic Neue", cursive;
+      color: white;
+      /* cursor: url('cursor.png'), auto; */
+    }
+
+    .navbar {
+      position: fixed;
+      top: 20px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      z-index: 10;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.95rem;
+      padding: 6px 15px;
+      border: 2px solid #ff99ff;
+      border-radius: 25px;
+      background: rgba(0, 0, 0, 0.3);
+      text-shadow: 0 0 6px #ff99ff;
+      box-shadow: 0 0 8px #ff99ff;
+      transition: all 0.3s ease;
+      animation: glow 3s infinite alternate;
+    }
+
+    .navbar a:hover {
+      background: #ff99ff;
+      color: #000;
+      box-shadow: 0 0 20px #ff99ff, 0 0 40px #ff99ff;
+      transform: scale(1.1);
+      /* cursor: url('cursor.png'), auto; */
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 4px #ff99ff; }
+      50% { box-shadow: 0 0 12px #ff99ff; }
+      100% { box-shadow: 0 0 4px #ff99ff; }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="particles"></canvas>
+
+  <div class="navbar">
+    <a href="index.html">Inicio</a>
+    <a href="insa.html">Insa</a>
+    <a href="senkai.html">Senkai</a>
+    <a href="contacto.html">Contacto</a>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let w, h, particles;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function createParticles() {
+      particles = [];
+      for (let i = 0; i < 70; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 3 + 1,
+          d: Math.random() * 1.5 + 0.5,
+          color: `hsl(${Math.random() * 360}, 100%, 75%)`
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (let p of particles) {
+        ctx.beginPath();
+        ctx.fillStyle = p.color;
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = p.color;
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      update();
+      requestAnimationFrame(draw);
+    }
+
+    function update() {
+      for (let p of particles) {
+        p.y -= p.d;
+        if (p.y < -10) {
+          p.y = h + 10;
+          p.x = Math.random() * w;
+          p.color = `hsl(${Math.random() * 360}, 100%, 75%)`;
+        }
+      }
+    }
+
+    createParticles();
+    draw();
+  </script>
+</body>
+</html>
