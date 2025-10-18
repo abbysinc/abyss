@@ -132,7 +132,7 @@
     draw();
   </script>
 
-  <!-- ====== Asistente Abyss AI ====== -->
+<!-- ====== Asistente Abyss AI ====== -->
 <div id="abyss-ai">
   <div id="ai-button">💬</div>
   <div id="ai-window">
@@ -158,14 +158,15 @@
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--pink), var(--pink-2));
-  box-shadow: 0 0 30px var(--pink);
+  background: linear-gradient(135deg, #ff00ff, #ff66cc);
+  box-shadow: 0 0 30px #ff33cc;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.8rem;
+  color: white;
   cursor: pointer;
-  z-index: 999;
+  z-index: 9999;
   transition: transform .3s;
   animation: floaty 3s ease-in-out infinite;
 }
@@ -178,19 +179,19 @@
   width: 320px;
   height: 420px;
   background: rgba(0,0,0,0.85);
-  border: 2px solid var(--pink);
+  border: 2px solid #ff66cc;
   border-radius: 16px;
-  box-shadow: 0 0 30px var(--pink);
+  box-shadow: 0 0 30px #ff66cc;
   overflow: hidden;
   display: none;
   flex-direction: column;
   backdrop-filter: blur(6px);
-  z-index: 1000;
+  z-index: 10000;
 }
 #ai-window.show { display: flex; animation: fadeIn .3s ease; }
 
 .ai-header {
-  background: linear-gradient(90deg, var(--pink), var(--pink-2));
+  background: linear-gradient(90deg, #ff00ff, #ff66cc);
   padding: 10px 15px;
   color: #000;
   font-weight: 800;
@@ -199,7 +200,11 @@
   align-items: center;
 }
 #ai-close {
-  background: none; border: none; color: #000; font-size: 1.4rem; cursor: pointer;
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 1.4rem;
+  cursor: pointer;
 }
 #ai-chat {
   flex: 1;
@@ -218,15 +223,15 @@
 .msg.bot {
   background: rgba(255,255,255,0.1);
   align-self: flex-start;
-  border: 1px solid var(--pink);
-  box-shadow: 0 0 10px var(--pink);
+  border: 1px solid #ff99ff;
+  box-shadow: 0 0 10px #ff99ff;
 }
 .msg.user {
-  background: linear-gradient(90deg, var(--pink), var(--pink-2));
+  background: linear-gradient(90deg, #ff00ff, #ff66cc);
   color: #000;
   align-self: flex-end;
   font-weight: 700;
-  box-shadow: 0 0 10px var(--pink-2);
+  box-shadow: 0 0 10px #ff66cc;
 }
 .ai-input {
   display: flex;
@@ -242,7 +247,7 @@
   font-family: "Comic Neue", cursive;
 }
 .ai-input button {
-  background: linear-gradient(90deg, var(--pink), var(--pink-2));
+  background: linear-gradient(90deg, #ff00ff, #ff66cc);
   border: none;
   cursor: pointer;
   padding: 10px 16px;
@@ -290,7 +295,6 @@ function sendMessage(){
   setTimeout(()=> simulateAI(text), 700);
 }
 
-/* ====== Simulación de IA ====== */
 function simulateAI(userMsg){
   let response = "Hmm... no estoy seguro, pero puedo ayudarte en Discord 💬";
   if(userMsg.toLowerCase().includes("pedido")) response = "Puedes hacer tu pedido en el canal de encargos de nuestro Discord ✨";
