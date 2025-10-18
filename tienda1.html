@@ -132,8 +132,101 @@
     @media (max-width:640px){
       .page{ padding-top:100px }
     }
+
+    /* ===== Popup base ===== */
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      background: rgba(0,0,0,0.85);
+      border: 2px solid var(--pink);
+      border-radius: 20px;
+      padding: 35px 45px;
+      color: white;
+      text-align: center;
+      font-family: "Comic Neue", cursive;
+      box-shadow: 0 0 40px var(--pink);
+      z-index: 999;
+      opacity: 0;
+      transition: all 0.4s ease;
+      overflow: hidden;
+    }
+    .popup.show {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .popup button {
+      margin-top: 20px;
+      background: linear-gradient(90deg, var(--pink), var(--pink-2));
+      border: none;
+      padding: 10px 25px;
+      border-radius: 20px;
+      font-weight: 700;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 15px var(--pink);
+    }
+    .popup button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px var(--pink), 0 0 45px var(--pink-2);
+    }
+
+    .popup-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(
+        from 0deg,
+        transparent,
+        var(--pink),
+        transparent,
+        var(--pink-2),
+        transparent
+      );
+      animation: spinGlow 6s linear infinite;
+      opacity: 0.25;
+      z-index: 0;
+      filter: blur(20px);
+    }
+    @keyframes spinGlow {
+      to { transform: rotate(360deg); }
+    }
+
+    .popup::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(var(--pink) 1px, transparent 1px),
+        radial-gradient(var(--pink-2) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.3;
+      animation: floatParticles 5s linear infinite;
+      z-index: 1;
+    }
+    @keyframes floatParticles {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 40px 60px, -40px -60px; }
+    }
+
+    .popup p {
+      position: relative;
+      z-index: 2;
+      font-size: 1.1rem;
+      text-shadow: 0 0 10px var(--pink);
+    }
+    .popup button {
+      position: relative;
+      z-index: 2;
+    }
   </style>
 </head>
+
 <body>
   <canvas id="particles"></canvas>
 
@@ -155,7 +248,6 @@
     </div>
 
     <section class="grid" id="grid">
-      <!-- Producto 1 -->
       <article class="card" data-cat="gfx">
         <span class="tag">GFX Discord</span>
         <img class="thumb" src="prod-gfx-1.png" alt="GFX Banner para Discord">
@@ -163,10 +255,9 @@
           <h3 class="title">Banner Discord para servidores (GFX)</h3>
           <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
       </article>
 
-      <!-- Producto 2 -->
       <article class="card" data-cat="dibujos">
         <span class="tag">Emotes</span>
         <img class="thumb" src="prod-dibujo-1.png" alt="Dibujo estilo anime">
@@ -174,10 +265,9 @@
           <h3 class="title">Emotes para tus streams o videos</h3>
           <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
       </article>
 
-      <!-- Producto 3 -->
       <article class="card" data-cat="disenos">
         <span class="tag">Diseño</span>
         <img class="thumb" src="prod-diseno-1.jpg" alt="Diseño de logo">
@@ -185,10 +275,9 @@
           <h3 class="title">Diseños profesionales para tus proyectos</h3>
           <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
       </article>
 
-      <!-- Producto 4 -->
       <article class="card" data-cat="web">
         <span class="tag">Páginas Web</span>
         <img class="thumb" src="prod-web-1.jpg" alt="Página web landing">
@@ -196,10 +285,9 @@
           <h3 class="title">Páginas web personalizadas</h3>
           <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
       </article>
 
-      <!-- Producto 5 -->
       <article class="card" data-cat="gfx">
         <span class="tag">GFX</span>
         <img class="thumb" src="prod-gfx-2.jpg" alt="Overlay stream">
@@ -207,10 +295,9 @@
           <h3 class="title">Logos y overlays para juegos</h3>
           <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
       </article>
 
-      <!-- Producto 6 -->
       <article class="card" data-cat="dibujos">
         <span class="tag">Dibujo</span>
         <img class="thumb" src="prod-dibujo-2.jpg" alt="Chibi personalizado">
@@ -218,10 +305,17 @@
           <h3 class="title">Dibujos personalizados hechos por Insa</h3>
           <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y">Comprar</a>
       </article>
     </section>
   </main>
+
+  <!-- Popup Anime Mejorado -->
+  <div id="popup" class="popup">
+    <div class="popup-glow"></div>
+    <p>💬 Serás redirigido a nuestro Discord<br>para realizar tu pedido.</p>
+    <button id="popup-btn">Aceptar</button>
+  </div>
 
   <script>
     /* Partículas anime */
@@ -263,6 +357,25 @@
           c.style.display = show ? '' : 'none';
         });
       });
+    });
+
+    /* Popup control */
+    const popup = document.getElementById('popup');
+    const popupBtn = document.getElementById('popup-btn');
+    const buyButtons = document.querySelectorAll('.buy');
+    let redirectLink = '';
+
+    buyButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        redirectLink = btn.href;
+        popup.classList.add('show');
+      });
+    });
+
+    popupBtn.addEventListener('click', () => {
+      popup.classList.remove('show');
+      setTimeout(() => window.open(redirectLink, '_blank'), 300);
     });
   </script>
 </body>
