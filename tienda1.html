@@ -8,14 +8,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 
   <style>
-    /* ======= Base ======= */
-    :root{
+    :root {
       --pink:#ff99ff;
       --pink-2:#ff5cff;
       --bg-glass: rgba(0,0,0,.35);
     }
     *{box-sizing:border-box}
-    body{
+    body {
       margin:0;
       background: url("abyss.png") center/cover fixed no-repeat;
       overflow-x:hidden;
@@ -23,66 +22,60 @@
       color:#fff;
     }
 
-    /* ======= Partículas ======= */
-    canvas#particles{
+    canvas#particles {
       position:fixed; inset:0; z-index:0; pointer-events:none;
     }
 
-    /* ======= Nav (botones arriba, pequeños) ======= */
-    .navbar{
+    .navbar {
       position:fixed; top:20px; width:100%;
       display:flex; justify-content:center; gap:14px;
       z-index:10;
     }
-    .navbar a{
+    .navbar a {
       text-decoration:none; color:#fff; font-size:.95rem;
       padding:6px 14px; border:2px solid var(--pink); border-radius:24px;
       background:rgba(0,0,0,.3); text-shadow:0 0 6px var(--pink);
       box-shadow:0 0 8px var(--pink); transition:.25s;
       animation:glow 3s infinite alternate;
     }
-    .navbar a:hover{
+    .navbar a:hover {
       background:var(--pink); color:#000; transform:scale(1.08);
       box-shadow:0 0 20px var(--pink),0 0 40px var(--pink);
     }
-    @keyframes glow{
+    @keyframes glow {
       0%{ box-shadow:0 0 5px var(--pink)}
       50%{ box-shadow:0 0 14px var(--pink)}
       100%{ box-shadow:0 0 5px var(--pink)}
     }
 
-    /* ======= Contenido ======= */
-    .page{
+    .page {
       position:relative; z-index:1;
-      padding:110px 22px 60px; /* espacio por la navbar */
+      padding:110px 22px 60px;
       max-width:1200px; margin:0 auto;
     }
 
-    /* ======= Filtros (categorías) ======= */
-    .filters{
+    .filters {
       display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
       margin-bottom:22px;
     }
-    .filter-btn{
+    .filter-btn {
       border:none; border-radius:999px; padding:8px 16px;
       background:var(--bg-glass); color:#fff; font-weight:700;
       border:2px solid var(--pink); cursor:pointer; transition:.2s;
       box-shadow:0 0 8px var(--pink);
     }
     .filter-btn:hover{ transform:translateY(-2px); }
-    .filter-btn.active{
+    .filter-btn.active {
       background:linear-gradient(90deg, var(--pink), var(--pink-2));
       color:#000; text-shadow:none;
     }
 
-    /* ======= Grid de productos ======= */
-    .grid{
+    .grid {
       display:grid; gap:18px;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     }
 
-    /* Tarjeta con marco animado */
-    .card{
+    .card {
       position:relative; overflow:hidden; border-radius:18px;
       padding:12px; background:var(--bg-glass);
       backdrop-filter: blur(6px);
@@ -90,35 +83,35 @@
       transition: transform .25s ease, box-shadow .25s ease;
       animation:fadeIn .5s ease both;
     }
-    .card::before{
+    .card::before {
       content:"";
       position:absolute; inset:-2px;
       background: conic-gradient(from 0deg, var(--pink), var(--pink-2), var(--pink));
       filter: blur(14px); opacity:.55;
       z-index:0; animation:spin 6s linear infinite;
     }
-    .card::after{
+    .card::after {
       content:"";
       position:absolute; inset:0; border-radius:16px;
       background:rgba(0,0,0,.55); z-index:1; border:1px solid rgba(255,255,255,.15);
     }
-    .card:hover{ transform:translateY(-6px) }
-    @keyframes spin{ to{ transform:rotate(360deg) } }
-    @keyframes fadeIn{ from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none} }
+    .card:hover { transform:translateY(-6px) }
+    @keyframes spin { to{ transform:rotate(360deg) } }
+    @keyframes fadeIn { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:none} }
 
-    .thumb{
-      position:relative; z-index:2; width:100%; aspect-ratio: 4/3;
+    .thumb {
+      position:relative; z-index:2; width:100%; aspect-ratio:4/3;
       object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,.15);
       box-shadow:0 10px 30px rgba(0,0,0,.35);
     }
-    .info{
+    .info {
       position:relative; z-index:2; padding:12px 6px 6px;
       display:flex; justify-content:space-between; align-items:center; gap:10px;
     }
-    .title{ font-size:1.05rem; line-height:1.2; }
-    .price{ font-weight:800; color:#ffe0ff; text-shadow:0 0 8px var(--pink) }
+    .title { font-size:1.05rem; line-height:1.2; }
+    .price { font-weight:800; color:#ffe0ff; text-shadow:0 0 8px var(--pink) }
 
-    .buy{
+    .buy {
       position:relative; z-index:2; margin:10px 6px 6px;
       display:inline-flex; align-items:center; justify-content:center;
       gap:8px; width:100%;
@@ -129,24 +122,21 @@
       transition: transform .2s ease, box-shadow .2s ease;
     }
     .buy:hover{ transform:translateY(-2px); box-shadow:0 0 22px var(--pink) }
-    .tag{
+    .tag {
       position:absolute; top:10px; left:10px; z-index:2;
       padding:4px 10px; border-radius:999px; font-size:.78rem; font-weight:800;
       background:rgba(0,0,0,.65); border:1px solid rgba(255,255,255,.2);
       text-shadow:0 0 6px var(--pink);
     }
 
-    /* Responsive márgenes */
     @media (max-width:640px){
       .page{ padding-top:100px }
     }
   </style>
 </head>
 <body>
-  <!-- Partículas -->
   <canvas id="particles"></canvas>
 
-  <!-- Botones superiores (nav) -->
   <nav class="navbar">
     <a href="index.html">Inicio</a>
     <a href="insa.html">Insa</a>
@@ -155,9 +145,7 @@
     <a href="contacto.html">Contacto</a>
   </nav>
 
-  <!-- Contenido -->
   <main class="page">
-    <!-- Filtros -->
     <div class="filters">
       <button class="filter-btn active" data-filter="all">Todos</button>
       <button class="filter-btn" data-filter="gfx">GFX</button>
@@ -166,73 +154,75 @@
       <button class="filter-btn" data-filter="web">Páginas Web</button>
     </div>
 
-    <!-- Grid de productos -->
     <section class="grid" id="grid">
-      <!-- ===== Ejemplos (duplica y edita) ===== -->
+      <!-- Producto 1 -->
       <article class="card" data-cat="gfx">
         <span class="tag">GFX Discord</span>
         <img class="thumb" src="prod-gfx-1.jpg" alt="GFX Banner para Discord">
         <div class="info">
-          <h3 class="title">Banner Discord para tu servidores (GFX)</h3>
-          <div class="price">Proximamente</div>
+          <h3 class="title">Banner Discord para servidores (GFX)</h3>
+          <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://tu-link-de-compra.com/gfx1" target="_blank" rel="noopener">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
       </article>
 
+      <!-- Producto 2 -->
       <article class="card" data-cat="dibujos">
         <span class="tag">Emotes</span>
         <img class="thumb" src="prod-dibujo-1.jpg" alt="Dibujo estilo anime">
         <div class="info">
-          <h3 class="title">Emotes para tus streams, videos etc</h3>
-          <div class="price">Proximamente</div>
+          <h3 class="title">Emotes para tus streams o videos</h3>
+          <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://tu-link-de-compra.com/dibujo1" target="_blank" rel="noopener">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
       </article>
 
+      <!-- Producto 3 -->
       <article class="card" data-cat="disenos">
         <span class="tag">Diseño</span>
         <img class="thumb" src="prod-diseno-1.jpg" alt="Diseño de logo">
         <div class="info">
-          <h3 class="title">Diseños profesionales para tu proyectos</h3>
-          <div class="price">Proximamente</div>
+          <h3 class="title">Diseños profesionales para tus proyectos</h3>
+          <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://tu-link-de-compra.com/logo1" target="_blank" rel="noopener">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
       </article>
 
+      <!-- Producto 4 -->
       <article class="card" data-cat="web">
-        <span class="tag">Paginas Web</span>
+        <span class="tag">Páginas Web</span>
         <img class="thumb" src="prod-web-1.jpg" alt="Página web landing">
         <div class="info">
-          <h3 class="title">Paginas web para tus proyectos.</h3>
-          <div class="price">Proximamente</div>
+          <h3 class="title">Páginas web personalizadas</h3>
+          <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://tu-link-de-compra.com/web1" target="_blank" rel="noopener">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
       </article>
 
-      <!-- Más ejemplos -->
+      <!-- Producto 5 -->
       <article class="card" data-cat="gfx">
         <span class="tag">GFX</span>
         <img class="thumb" src="prod-gfx-2.jpg" alt="Overlay stream">
         <div class="info">
-          <h3 class="title">Logos de GFX para roblox o otros juegos</h3>
-          <div class="price">Proximamente</div>
+          <h3 class="title">Logos y overlays para juegos</h3>
+          <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://tu-link-de-compra.com/gfx2" target="_blank" rel="noopener">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
       </article>
 
+      <!-- Producto 6 -->
       <article class="card" data-cat="dibujos">
         <span class="tag">Dibujo</span>
         <img class="thumb" src="prod-dibujo-2.jpg" alt="Chibi personalizado">
         <div class="info">
-          <h3 class="title">Dibujos personalizados hechos por insa</h3>
-          <div class="price">Proximamente</div>
+          <h3 class="title">Dibujos personalizados hechos por Insa</h3>
+          <div class="price">Próximamente</div>
         </div>
-        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank" rel="noopener">Comprar</a>
+        <a class="buy" href="https://discord.gg/waprB3u36Y" target="_blank">Comprar</a>
       </article>
     </section>
   </main>
 
-  <!-- ======= Scripts: partículas + filtro ======= -->
   <script>
     /* Partículas anime */
     const canvas = document.getElementById('particles');
