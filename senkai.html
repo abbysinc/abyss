@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,11 +84,11 @@
   <canvas id="particles"></canvas>
 
   <div class="navbar">
-    <a href="index.html">Inicio</a>
+    <a href="index.html">Home</a>
     <a href="insa.html">Insa</a>
     <a href="senkai.html">Senkai</a>
-    <a href="contacto.html">Contacto</a>
-    <a href="tienda.html">Tienda</a>
+    <a href="contact.html">Contact</a>
+    <a href="store.html">Store</a>
   </div>
 
   <script>
@@ -154,10 +154,10 @@
         <button id="ai-close">×</button>
       </div>
       <div id="ai-chat">
-        <div class="msg bot">¡Hola! Soy <b>Abyss AI</b> 🌌<br>¿En qué puedo ayudarte hoy?</div>
+        <div class="msg bot">Hi! I'm <b>Abyss AI</b> 🌌<br>How can I help you today?</div>
       </div>
       <div class="ai-input">
-        <input id="ai-text" type="text" placeholder="Escribe tu mensaje..."/>
+        <input id="ai-text" type="text" placeholder="Type your message..."/>
         <button id="ai-send">➤</button>
       </div>
     </div>
@@ -309,12 +309,12 @@
     }
 
     function simulateAI(userMsg){
-      let response = "Hmm... no estoy seguro, pero puedo ayudarte en Discord 💬";
-      if(userMsg.toLowerCase().includes("pedido")) response = "Puedes hacer tu pedido en nuestro Discord ✨";
-      else if(userMsg.toLowerCase().includes("logo")) response = "Creamos logos personalizados con TU PROPIO ESTILO 🎨";
-      else if(userMsg.toLowerCase().includes("precio")) response = "Los precios varían según el diseño 💎";
-      else if(userMsg.toLowerCase().includes("hola")) response = "¡Hola! Soy Abyss AI 🌌, tu asistente virtual.";
-      else if(userMsg.toLowerCase().includes("discord")) response = "Este es nuestro servidor oficial 👉 https://discord.gg/waprB3u36Y";
+      let response = "Hmm... I'm not sure, but I can help you on Discord 💬";
+      if(userMsg.toLowerCase().includes("order")) response = "You can place your order directly on our Discord ✨";
+      else if(userMsg.toLowerCase().includes("logo")) response = "We create personalized logos with YOUR own style 🎨";
+      else if(userMsg.toLowerCase().includes("price")) response = "Prices vary depending on the design 💎";
+      else if(userMsg.toLowerCase().includes("hello")) response = "Hello! I'm Abyss AI 🌌, your virtual assistant.";
+      else if(userMsg.toLowerCase().includes("discord")) response = "Here’s our official server 👉 https://discord.gg/waprB3u36Y";
       addMsg(response, 'bot');
     }
   </script>
